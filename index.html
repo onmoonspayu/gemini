@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gemini Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
+    }
+
+    .top-right {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 14px;
+    }
+
+    .top-right a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #000;
+      background-color: #f0f0f0;
+      padding: 10px 14px;
+      border-radius: 20px;
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+
+    .button, .passkey-button {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .button {
+      background: black;
+      color: white;
+    }
+
+    .passkey-button {
+      background: #eee;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .divider:not(:empty)::before {
+      margin-right: .5em;
+    }
+
+    .divider:not(:empty)::after {
+      margin-left: .5em;
+    }
+
+    .checkbox {
+      display: flex;
+      justify-content: center; /* Center horizontally */
+      align-items: center;     /* Align vertically */
+      gap: 10px;
+      font-size: 14px;
+      color: #000;
+      margin-top: 20px;
+    }
+
+    .checkbox input[type="checkbox"] {
+      transform: translateY(-1px); /* Pixel-perfect alignment */
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .email-display {
+      background: #f8f8f8;
+      padding: 14px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .email-display span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .welcome {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .forgot {
+      text-align: left;
+      margin-top: 5px;
+      font-size: 14px;
+    }
+
+    .forgot a {
+      text-decoration: underline;
+      color: black;
+    }
+
+    @media (max-width: 480px) {
+      .logo img {
+        width: 30px;
+      }
+
+      .title, .welcome {
+        font-size: 24px;
+      }
+
+      .top-right {
+        font-size: 12px;
+        top: 10px;
+        right: 10px;
+      }
+
+      .top-right a {
+        padding: 8px 10px;
+      }
+
+      input[type="email"],
+      input[type="password"],
+      .button,
+      .passkey-button {
+        font-size: 15px;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Logo -->
+<div class="logo">
+  <img src="logo.jpg" alt="Gemini Logo" width="40" />
+</div>
+
+<!-- Create Account Link -->
+<div class="top-right">
+  Don’t have a Gemini account? <a href="#">Create a new account</a>
+</div>
+
+<!-- Main Container -->
+<div class="container">
+  <!-- Step 1 -->
+  <div id="step1">
+    <div class="title">Sign in</div>
+    <input type="email" id="email" placeholder="Email address" required />
+    <button class="button" onclick="goToStep2()">Continue</button>
+
+    <div class="divider">OR</div>
+    <button class="passkey-button">🔑 Sign in with passkey</button>
+  </div>
+
+  <!-- Step 2 -->
+  <div id="step2" class="hidden">
+    <div class="welcome">Welcome</div>
+
+    <div class="email-display">
+      <span id="displayEmail"></span>
+      <button onclick="goBack()" style="background:#eee; border:none; padding:6px 12px; border-radius:20px;">Change</button>
+    </div>
+
+    <input type="password" id="password" placeholder="Password" />
+    <div class="forgot"><a href="#">Forgot password?</a></div>
+
+    <button class="button" onclick="login()">Sign in</button>
+
+    <div class="divider">OR</div>
+    <button class="passkey-button">🔑 Sign in with passkey</button>
+
+    <div class="checkbox">
+      <input type="checkbox" id="remember" />
+      <label for="remember">Remember my email address</label>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+  function goToStep2() {
+    const emailInput = document.getElementById('email');
+    const email = emailInput.value.trim();
+    const isValid = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+
+    if (isValid) {
+      document.getElementById('displayEmail').textContent = email;
+      document.getElementById('step1').classList.add('hidden');
+      document.getElementById('step2').classList.remove('hidden');
+    } else {
+      alert("Please enter a valid email address.");
+    }
+  }
+
+  function goBack() {
+    document.getElementById('step2').classList.add('hidden');
+    document.getElementById('step1').classList.remove('hidden');
+  }
+
+  function login() {
+    // Redirect to call.html after successful sign-in
+    window.location.href = "call.html";
+  }
+</script>
+
+</body>
+</html>
